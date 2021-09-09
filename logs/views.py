@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .serializers import LogSerializer
+from .models import Log
 
-# Create your views here.
+class LogList(generics.ListCreateAPIView):
+    queryset = Log.objects.all()
+    serializer_class = LogSerializer
+
+class LogDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Log.objects.all()
+    serializer_class = LogSerializer
